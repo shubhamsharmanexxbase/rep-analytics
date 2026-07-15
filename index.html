@@ -58,7 +58,7 @@ img{max-width:100%}
   border-bottom:1px solid var(--line); color:var(--txt)}
 .nav-in{display:flex; align-items:center; gap:20px; height:56px}
 .brand{font-family:var(--mono); font-size:.78rem; letter-spacing:.14em; white-space:nowrap; text-decoration:none;
-  display:inline-flex; align-items:center; gap:8px}
+  display:inline-flex; align-items:center; gap:8px; flex-shrink:0}
 .brand b{color:var(--signal)}
 .nav-links{display:flex; gap:4px; margin-left:auto; overflow-x:auto; scrollbar-width:none;
   -webkit-overflow-scrolling:touch; max-width:100%; padding:4px 0}
@@ -373,7 +373,7 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
 .hero-logo{margin-top:clamp(24px,4vw,36px)}
 .hero-logo-img{height:clamp(44px,7vw,72px); width:auto; display:block}
 .hero-page-title{margin-top:.3em}
-.brand-logo{height:16px; width:auto; display:block}
+.brand-logo{height:16px; width:auto; display:block; flex-shrink:0}
 
 /* reveal — two-phase entrance per animation reference:
    1) card shell slides/scales in (staggered across siblings)
