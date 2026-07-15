@@ -63,6 +63,9 @@ img{max-width:100%}
 .nav-links{display:flex; gap:4px; margin-left:auto; overflow-x:auto; scrollbar-width:none;
   -webkit-overflow-scrolling:touch; max-width:100%; padding:4px 0}
 .nav-links::-webkit-scrollbar{display:none}
+.nav-links[data-fade="start"]{-webkit-mask-image:linear-gradient(to right, transparent, #000 28px); mask-image:linear-gradient(to right, transparent, #000 28px)}
+.nav-links[data-fade="end"]{-webkit-mask-image:linear-gradient(to right, #000 calc(100% - 28px), transparent); mask-image:linear-gradient(to right, #000 calc(100% - 28px), transparent)}
+.nav-links[data-fade="both"]{-webkit-mask-image:linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent); mask-image:linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent)}
 .nav-a{display:flex; align-items:center; gap:7px; padding:7px 12px; border-radius:999px;
   font-size:.8rem; color:var(--dim); text-decoration:none; white-space:nowrap;
   border:1px solid transparent; transition:color .2s, border-color .2s}
@@ -317,31 +320,6 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
 .stbl th:first-child{z-index:2}
 .sdelta{font-family:var(--mono); font-size:.64rem; padding:2px 8px; border-radius:999px; background:rgba(47,191,113,.18); color:#4ADE80}
 
-/* ============ IN THE LAB (locked metrics — light, unified) ============ */
-.locked-band{position:relative; overflow:hidden; background:var(--bone); color:var(--txt)}
-.locked-band .wrap{position:relative}
-.locked-band .sub{color:var(--dim)}
-.band-art{position:absolute; inset:0; pointer-events:none; opacity:.5}
-.band-art svg{position:absolute; right:-4%; top:-10%; height:120%; width:auto}
-.locked-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:34px}
-.locked-card{
-  position:relative; overflow:hidden; border-radius:var(--r-lg); border:1px solid var(--line);
-  background:var(--paper); padding:26px 24px 24px; min-height:280px;
-  display:flex; flex-direction:column; justify-content:flex-end; gap:8px;
-  box-shadow:0 1px 3px rgba(0,0,0,.35);
-}
-.locked-card h3{font-family:var(--disp); font-weight:800; font-size:1.35rem; letter-spacing:-.01em; position:relative}
-.locked-card p{position:relative; color:var(--dim); font-size:.88rem}
-.locked-card .chip{position:relative; align-self:flex-start; margin-bottom:6px}
-.locked-card .chip i{width:7px;height:7px;border-radius:50%;background:var(--mc)}
-.orb{position:absolute; inset:auto -25% 42% -25%; height:190px; pointer-events:none;
-  background:
-    radial-gradient(closest-side at 50% 50%, var(--mc-strong), transparent 62%);
-  filter:blur(28px); opacity:.06;
-}
-.dotgrid{display:grid; grid-template-columns:repeat(15,1fr); gap:3px; grid-row:1 / span 2; grid-column:2; max-width:96px; margin:0 0 auto}
-.dotgrid i{width:4px;height:4px;border-radius:50%;background:var(--dg,var(--ok)); opacity:.9}
-.chip-soon{background:var(--bone); color:var(--dim); border:1px solid var(--line)}
 .prev-pill{display:inline-block; margin-left:7px; padding:1px 7px; border-radius:999px; font-family:var(--mono);
   font-size:.54rem; letter-spacing:.08em; text-transform:uppercase; color:var(--dim);
   background:rgba(255,255,255,.07); border:1px solid var(--line); vertical-align:middle}
@@ -392,7 +370,6 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
 @media (max-width:940px){
   .ugrid{grid-template-columns:1fr}
   .g3{grid-template-columns:1fr}
-  .locked-grid{grid-template-columns:1fr 1fr}
   .statsbar{grid-template-columns:repeat(3,1fr)}
   .stat-cell:nth-child(4),.stat-cell:nth-child(5){border-top:1px solid var(--line)}
   .stat-cell:nth-child(3){border-right:0}
@@ -401,8 +378,6 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
   :root{--pad:18px}
   .b-sub{display:none}
   .dough{height:290px !important}
-  .locked-grid{grid-template-columns:1fr}
-  .locked-card{min-height:220px}
   .g2,.g4{grid-template-columns:1fr}
   .stage-tiles{grid-template-columns:1fr 1fr}
   .statsbar{grid-template-columns:1fr 1fr}
@@ -422,10 +397,9 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
 /* ============ PRINT ============ */
 @media print{
   .nav{position:static; background:#fff; color:#000; border-bottom:1px solid #ddd}
-  .nav-links, .hero-art, .swipe-hint, .band-art, .orb, .load-more, .bio-pager, .sc-note{display:none}
-  body, .hero, .sbanner, .footer, .locked-band{background:#fff; color:#000}
-  .hero .sub, .sb-text p, .footer p, .locked-band .sub, .locked-card p{color:#444}
-  .locked-card{background:#fff; border-color:#ddd}
+  .nav-links, .hero-art, .swipe-hint, .load-more, .bio-pager, .sc-note{display:none}
+  body, .hero, .sbanner, .footer{background:#fff; color:#000}
+  .hero .sub, .sb-text p, .footer p{color:#444}
   .statsbar{background:#fff; border-color:#ddd}
   .stat-label, .sbk-l{color:#666}
   .reveal,.reveal>*{opacity:1; transform:none}
@@ -860,18 +834,6 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
   </div>
 </section>
 
-<!-- IN THE LAB — locked metrics still in validation -->
-<section class="section locked-band" id="lab" style="--mc:var(--spo2); border-bottom:0">
-  <div class="band-art" aria-hidden="true" id="band-art"></div>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow"><span class="dot" style="--mc:var(--spo2)"></span>In the lab</p>
-      <h2 class="h-section">Three metrics, still earning it.</h2>
-      <p class="sub">We don't ship a number until it survives validation. These are in supervised trials right now &mdash; they unlock the moment they pass.</p>
-    </div>
-    <div class="locked-grid" id="locked-grid"></div>
-  </div>
-</section>
 </main>
 
 <footer class="footer">
@@ -1210,8 +1172,8 @@ window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(()=>{
 
 /* ---- nav + scrollspy + reveal ---- */
 const SECTIONS=[['coverage','Coverage','var(--teal)'],['hr','Heart rate','var(--signal)'],['steps','Steps','var(--lime)'],
-  ['caldist','Calories & distance','var(--coral)'],['distance','Distance','var(--sky)'],
-  ['biometrics','Biometrics','var(--violet)'],['sleep','Sleep','var(--indigo)'],['lab','In the lab','var(--spo2)']];
+  ['caldist','Calories','var(--coral)'],['distance','Distance','var(--sky)'],
+  ['biometrics','Biometrics','var(--violet)'],['sleep','Sleep','var(--indigo)']];
 const box=$('#nav-links');
 SECTIONS.forEach(([id,label,c])=>{
   const a=document.createElement('a'); a.className='nav-a'; a.href='#'+id;
@@ -1240,46 +1202,21 @@ SECTIONS.forEach(([id,label,c])=>{
   addEventListener('scroll',()=>{ if(!tick){ tick=true; requestAnimationFrame(compute); } },{passive:true});
   compute();
 })();
-/* ---- In the lab: three metrics still in validation ---- */
-const LOCKED=[
-  { id:'vo2',  color:'var(--vo2)',  name:'VO\u2082 max',      kicker:'Cardiorespiratory fitness',  lockLine:'In validation against metabolic-cart VO\u2082.' },
-  { id:'spo2', color:'var(--spo2)', name:'SpO\u2082',          kicker:'Blood-oxygen saturation',    lockLine:'In validation against pulse-oximetry reference.' },
-  { id:'load', color:'var(--load)', name:'Training load',     kicker:'Cumulative strain & recovery', lockLine:'In validation against lab strain protocols.' },
-];
-function lockedCards(){
-  const grid=document.getElementById('locked-grid'); if(!grid) return;
-  const strong={vo2:'#3FA9F5', spo2:'#25C9B4', load:'#F35B5B'};
-  LOCKED.forEach(m=>{
-    const card=el('div','locked-card reveal');
-    card.style.setProperty('--mc', m.color);
-    const orb=el('div','orb'); orb.style.setProperty('--mc-strong', strong[m.id]||'#FF6E28'); card.appendChild(orb);
-    const dg=el('div','dotgrid'); const rnd=mulberry(m.id.length*13+5);
-    for(let k=0;k<45;k++){ const d=el('i'); d.style.setProperty('--dg', rnd()>0.55 ? m.color : 'rgba(255,255,255,.14)'); dg.appendChild(d); }
-    card.appendChild(dg);
-    card.appendChild(el('div','chip chip-soon','<i></i>Coming soon'));
-    card.appendChild(el('h3',null,m.name));
-    card.appendChild(el('p',null,m.kicker+' \u00B7 '+m.lockLine));
-    grid.appendChild(card);
-  });
-}
-
-/* ---- generative capillary texture (faint ink on light band) ---- */
-function veins(){
-  const host=document.getElementById('band-art'); if(!host) return;
-  const W=900,H=700, rnd=mulberry(7); let d='';
-  function branch(x,y,ang,len,wd,depth){
-    if(depth<=0||len<9) return;
-    const nx=x+Math.cos(ang)*len, ny=y+Math.sin(ang)*len;
-    const cx=x+Math.cos(ang+((rnd()-.5)*.9))*len*.5, cy=y+Math.sin(ang+((rnd()-.5)*.9))*len*.5;
-    d+=`<path d="M${x.toFixed(0)} ${y.toFixed(0)} Q${cx.toFixed(0)} ${cy.toFixed(0)} ${nx.toFixed(0)} ${ny.toFixed(0)}" stroke-width="${wd.toFixed(1)}"/>`;
-    const kids=rnd()>.28?2:3;
-    for(let k=0;k<kids;k++) branch(nx,ny, ang+(rnd()-.5)*1.25, len*(.62+rnd()*.2), wd*.64, depth-1);
+/* ---- edge fade on nav-links: hints that the pill row scrolls, instead of hard-clipping whichever pill sits at the boundary ---- */
+(function(){
+  function syncFade(){
+    const max=box.scrollWidth-box.clientWidth;
+    if(max<=1){ box.removeAttribute('data-fade'); return; }
+    const hideLeft=box.scrollLeft<=1, hideRight=box.scrollLeft>=max-1;
+    if(!hideLeft&&!hideRight) box.setAttribute('data-fade','both');
+    else if(!hideLeft) box.setAttribute('data-fade','start');
+    else if(!hideRight) box.setAttribute('data-fade','end');
+    else box.removeAttribute('data-fade');
   }
-  branch(W*0.98, H*0.14, Math.PI*0.86, 120, 7, 7);
-  branch(W*1.02, H*0.55, Math.PI*1.02, 135, 8, 7);
-  branch(W*0.86, H*0.98, Math.PI*1.32, 110, 6, 6);
-  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(255,255,255,.07)" stroke-linecap="round" style="filter:blur(.4px)">${d}</g></svg>`;
-}
+  box.addEventListener('scroll', syncFade, {passive:true});
+  window.addEventListener('resize', syncFade);
+  syncFade();
+})();
 /* ---- count-up numbers (the "ticking" detail finisher in the reference) ---- */
 const RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
 function countUp(el, delay){
@@ -1306,8 +1243,6 @@ function countUp(el, delay){
 }
 
 /* ---- two-phase staggered reveal (per animation reference) ---- */
-lockedCards();
-veins();
 function primeReveal(el){
   /* sibling stagger among .reveal peers in the same parent */
   const sibs=[...el.parentElement.children].filter(n=>n.classList&&n.classList.contains('reveal'));
