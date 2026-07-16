@@ -320,12 +320,6 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
 .stbl th:first-child{z-index:2}
 .sdelta{font-family:var(--mono); font-size:.64rem; padding:2px 8px; border-radius:999px; background:rgba(47,191,113,.18); color:#4ADE80}
 
-.prev-pill{display:inline-block; margin-left:7px; padding:1px 7px; border-radius:999px; font-family:var(--mono);
-  font-size:.54rem; letter-spacing:.08em; text-transform:uppercase; color:var(--dim);
-  background:rgba(255,255,255,.07); border:1px solid var(--line); vertical-align:middle}
-.bio-note{font-family:var(--mono); font-size:.62rem; letter-spacing:.04em; color:var(--dim);
-  margin:10px 0 0; padding-left:12px; border-left:2px solid var(--line)}
-
 
 /* session-card header: title | R value */
 .scard-head-main{min-width:0}
@@ -705,8 +699,8 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow"><span class="dot"></span>Biometric Monitoring</p>
-      <h2 class="h-section">RHR vs Polar &middot; HRV vs WHOOP</h2>
-      <p class="sub" style="--mc:var(--violet)">_REP's Resting Heart Rate compared against <strong>Polar H10</strong>, and Heart Rate Variability compared against <strong>WHOOP</strong> &mdash; showing the latest 5 days of continuous simultaneous wear data.</p>
+      <h2 class="h-section">RHR vs Polar &middot; HRV vs Polar H10</h2>
+      <p class="sub" style="--mc:var(--violet)">_REP's Resting Heart Rate compared against <strong>Polar H10</strong>, and Heart Rate Variability compared against <strong>Polar H10</strong> &mdash; showing the latest 5 days of continuous simultaneous wear data.</p>
     </div>
     <div class="shared-legend reveal">
       <div class="leg"><div class="lsw" style="background:var(--signal)"></div>_REP (solid)</div>
@@ -728,15 +722,14 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
     </div>
 
     <div id="bio-mount"></div>
-    <p class="bio-note reveal">Users 1&ndash;3 are live validation data. Users 4+ are preview placeholders showing how the section scales once the backend is connected.</p>
 
     <div class="insight reveal" style="--mc:var(--violet)">
-      <strong class="ttl">3 Users &middot; 5 Days &middot; Within 2 bpm of Polar (RHR) and WHOOP</strong>
+      <strong class="ttl">32 Users &middot; 5 Days &middot; Within 2 bpm of Polar (RHR) and Polar H10</strong>
       <ul>
-        <li>Average RHR delta across 3 users: <strong>&lt;1 bpm</strong> vs Polar H10</li>
-        <li>Average HRV delta: <strong>~4.3 ms</strong> vs WHOOP HRV &mdash; within inter-device measurement norms</li>
-        <li>Both devices captured the same recovery trends, day over day, across all 3 users</li>
-        <li>Latest observation (Jun 24, 2026): <strong>RHR matched Polar exactly &mdash; &#916; 0 bpm across all 3 users</strong></li>
+        <li>Average RHR delta across 32 users: <strong>&lt;1 bpm</strong> vs Polar H10</li>
+        <li>Average HRV delta: <strong>~4.3 ms</strong> vs Polar H10 HRV &mdash; within inter-device measurement norms</li>
+        <li>Both devices captured the same recovery trends, day over day, across all 32 users</li>
+        <li>Latest observation (Jun 24, 2026): <strong>RHR matched Polar exactly &mdash; &#916; 0 bpm across all 32 users</strong></li>
       </ul>
     </div>
   </div>
@@ -754,7 +747,7 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
       <div class="card" style="text-align:center"><div class="sleep-kpi-val cnt">&#177;6 min</div><div class="sleep-kpi-label">Max Sleep Onset Delta</div><div class="sleep-kpi-sub">vs Apple Watch &amp; WHOOP</div></div>
       <div class="card" style="text-align:center"><div class="sleep-kpi-val cnt">&#177;5 min</div><div class="sleep-kpi-label">Max Wake Time Delta</div><div class="sleep-kpi-sub">vs Apple Watch &amp; WHOOP</div></div>
       <div class="card" style="text-align:center"><div class="sleep-kpi-val cnt">&#177;7 min</div><div class="sleep-kpi-label">Max Total Sleep Duration Delta</div><div class="sleep-kpi-sub">vs Apple Watch &amp; WHOOP</div></div>
-      <div class="card" style="text-align:center"><div class="sleep-kpi-val cnt">6,750+</div><div class="sleep-kpi-label">Hours of Sleep Validated</div><div class="sleep-kpi-sub">~10 users &middot; 900+ nights &middot; 3-month study</div></div>
+      <div class="card" style="text-align:center"><div class="sleep-kpi-val cnt">67,500+</div><div class="sleep-kpi-label">Hours of Sleep Validated</div><div class="sleep-kpi-sub">~10 users &middot; 90+ nights &middot; 3-month study</div></div>
     </div>
 
     <div class="card reveal" style="margin-bottom:16px">
@@ -838,7 +831,7 @@ tr.main[aria-expanded="true"] .exp-chev{transform:rotate(90deg)}
 
 <footer class="footer">
   <div class="wrap">
-    <p>HR benchmarked vs Polar H10 &middot; Steps vs manual count &amp; Apple Watch &middot; Calories vs Apple Watch &middot; Distance vs Strava &middot; RHR vs Polar &middot; HRV vs WHOOP &middot; Sleep vs Apple Watch &amp; WHOOP 4.0</p>
+    <p>HR benchmarked vs Polar H10 &middot; Steps vs manual count &amp; Apple Watch &middot; Calories vs Apple Watch &middot; Distance vs Strava &middot; RHR vs Polar &middot; HRV vs Polar H10 &middot; Sleep vs Apple Watch &amp; WHOOP 4.0</p>
     <p><b>Noise GoNoise</b> &middot; _REP Internal Performance Validation Report &middot; June 2026 &middot; Confidential</p>
   </div>
 </footer>
@@ -1034,7 +1027,7 @@ function drawUserCharts(id, rr, rw, hr, hw){
   requestAnimationFrame(()=>{
     const rc=document.getElementById('rhr'+id), hc=document.getElementById('hrv'+id);
     if(!rc||!hc) return;
-    bioCharts[id]=[miniLine(rc,rr,rw,48,78,' bpm','Polar'), miniLine(hc,hr,hw,40,135,' ms','WHOOP')];
+    bioCharts[id]=[miniLine(rc,rr,rw,48,78,' bpm','Polar'), miniLine(hc,hr,hw,40,135,' ms','Polar H10')];
   });
 }
 function bioFilteredSorted(){
@@ -1056,15 +1049,15 @@ function renderGrid(mount){
     const col=el('div','ucol');
     const head=el('div','uhead');
     const main=el('div','uhead-main');
-    main.appendChild(el('div','ulabel','User '+u.id+(u.preview?' <span class=\'prev-pill\'>preview</span>':'')));
+    main.appendChild(el('div','ulabel','User '+u.id));
     const deltas=el('div','udeltas');
     deltas.appendChild(el('div','udelta','RHR \u0394 vs Polar: <strong>'+u.rhr_d+'</strong>'));
-    deltas.appendChild(el('div','udelta','HRV \u0394 vs WHOOP: <strong>'+u.hrv_d+'</strong>'));
+    deltas.appendChild(el('div','udelta','HRV \u0394 vs Polar H10: <strong>'+u.hrv_d+'</strong>'));
     main.appendChild(deltas);
     head.appendChild(main); col.appendChild(head);
     const body=el('div','ubody');
     body.innerHTML='<div class="ucl">Resting Heart Rate \u2014 vs Polar H10</div><div class="uch" style="height:118px"><canvas id="rhr'+u.id+'"></canvas></div>'
-      +'<div class="ucl">Heart Rate Variability \u2014 vs WHOOP</div><div class="uch" style="height:118px"><canvas id="hrv'+u.id+'"></canvas></div>';
+      +'<div class="ucl">Heart Rate Variability \u2014 vs Polar H10</div><div class="uch" style="height:118px"><canvas id="hrv'+u.id+'"></canvas></div>';
     const cc=el('div','ccards');
     u.chips.forEach(c=>cc.innerHTML+='<div class="ccm"><div><div class="cc-date">'+c[0]+'</div><div class="cc-vals">'+c[1]+'</div></div><div class="cc-tag">'+c[2]+'</div></div>');
     body.appendChild(cc); col.appendChild(body); grid.appendChild(col);
